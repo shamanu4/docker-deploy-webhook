@@ -24,7 +24,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/:token', (req, res) => {
-  console.log(`Request payload: \n ${req.body}`)
+  console.log(JSON.stringify(req.body, null, 2))
   if (!req.params.token || req.params.token != token) {
     console.log(`Webhook called with invalid or missing token (${req.params.token}).`)
     return res.status(401).send('Access Denied: Token Invalid\n').end()
