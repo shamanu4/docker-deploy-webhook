@@ -23,9 +23,10 @@ const registry = process.env.REGISTRY || ''
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.post('/webhook/:token', (req, res) => {
+app.post('/:token', (req, res) => {
+  console.log(`Request payload: \n ${req.body}`)
   if (!req.params.token || req.params.token != token) {
-    console.log("Webhook called with invalid or missing token.")
+    console.log(`Webhook called with invalid or missing token (${req.params.token}).`)
     return res.status(401).send('Access Denied: Token Invalid\n').end()
   }
 
@@ -63,5 +64,5 @@ app.all('*', (req, res) => {
 
 app.listen(process.env.PORT, err => {
   if (err) throw err
-  console.log(`Listening for webhooks on http://localhost:${process.env.PORT}/webhook/${token}`)
+  console.log(`Listening for webhooks on http://localhost:${process.env.PORT}/${token}`)
 })
