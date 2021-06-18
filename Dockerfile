@@ -1,11 +1,10 @@
 FROM node:8-alpine
-RUN apk update && apk add docker
-RUN mkdir -p /usr/src/app
-COPY index.js /usr/src/app
-COPY config.json /usr/src/app
-COPY package.json /usr/src/app
-COPY npm-shrinkwrap.json /usr/src/app
+RUN apk add --no-cache docker
 WORKDIR /usr/src/app
+COPY package.json .
+COPY npm-shrinkwrap.json .
 RUN npm install
-EXPOSE 80
+COPY index.js .
+COPY config.json .
+EXPOSE 8000
 CMD [ "npm", "start" ]
