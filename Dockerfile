@@ -6,5 +6,5 @@ COPY npm-shrinkwrap.json .
 RUN npm install
 COPY index.js .
 COPY config.json .
-EXPOSE 8000
+EXPOSE 8080
 CMD [ "npm", "start" ]
