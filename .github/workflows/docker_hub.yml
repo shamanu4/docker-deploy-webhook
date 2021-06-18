@@ -10,20 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - 
-        name: Set ref
-        id: ref
-        run: echo ::set-output name=ref::${GITHUB_REF#refs/*/}
-      - 
-        name: Set tag
-        id: tag
-        run: echo ::set-output name=$(echo ${{ steps.vars.outputs.ref }} | sed "s/[^[:alnum:]]/./g")
-      - 
         name: Check output
         env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
+          RELEASE_VERSION: ${{ github.sha }}
         run: |
-          echo ref=${{ steps.vars.outputs.ref }}
-          echo tag=${{ steps.vars.outputs.tag }}
+          echo ref=${{ github.ref }}
+          echo tag=${{ github.sha }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
