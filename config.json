@@ -2,6 +2,12 @@
   "production": {
     "shamanu4/uapf-space-fe:latest": {
       "service": "uapf_beta"
+    },
+    "shamanu4/uapf-space-api:latest": {
+      "service": "uapf_api"
+    },
+    "shamanu4/uapf-space-deploy-webhook:latest": {
+      "service": "uapf_webhook"
     }
   }
 }
